@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-""" this is a module """
+""" This is a module """
 from pymongo import MongoClient
 
 if __name__ == "__main__":
-    """ this is a method """
+    """ This is a method """
     client = MongoClient('mongodb://127.0.0.1:27017')
     nginx_collection = client.logs.nginx
 
@@ -13,7 +13,7 @@ if __name__ == "__main__":
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
     print('Methods:')
     for method in methods:
-        count = nginx_collection.count_documents({"method": method})
+        count = nginx_collection.count_documents({"method": method.upper()})
         print(f'\tmethod {method}: {count}')
 
     status_check = nginx_collection.count_documents(
@@ -21,3 +21,4 @@ if __name__ == "__main__":
     )
 
     print(f'{status_check} status check')
+
